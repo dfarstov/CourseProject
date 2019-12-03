@@ -5,12 +5,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import DBConnect.DatabaseHandler;
+import Model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class RegistrationController {
+public class RegistrationController extends Controller{
 
     @FXML
     private ResourceBundle resources;
@@ -41,22 +42,29 @@ public class RegistrationController {
 
     @FXML
     void initialize() {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-
         regButton.setOnAction(actionEvent -> {
-            try {
-                dbHandler.regUser(loginText.getText(),
-                        passwordText.getText(),
-                        nameText.getText(),
-                        familyText.getText(),
-                        phoneText.getText(),
-                        emailText.getText());
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            regNewUser();
         });
+    }
+
+    private void regNewUser(){
+        try {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+
+            String login = loginText.getText();
+            String password = passwordText.getText();
+            String name = nameText.getText();
+            String lastname = familyText.getText();
+            String phone = phoneText.getText();
+            String email = emailText.getText();
+
+            User user = new User("",login, password, name, lastname, phone, email);
+
+            dbHandler.regUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

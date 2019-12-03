@@ -9,19 +9,17 @@ import javafx.scene.Parent;
 public class Main extends Application{
 
     public static void main(String[] args) {
-
         Application.launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
-
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Авторизация");
-        stage.setResizable(false);
+            stage.setScene(scene);
+            stage.setTitle("Авторизация");
+            stage.setResizable(false);
 
-        stage.show();
+            stage.show();
     }
 }

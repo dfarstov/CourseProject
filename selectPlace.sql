@@ -1,0 +1,1 @@
+SELECT * FROM places WHERE places.id_hall = 1 AND places.row = 3 AND places.place_number = 2;
